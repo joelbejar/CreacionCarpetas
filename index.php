@@ -41,7 +41,7 @@ if(isset($_POST["button"])){
     
             
         for ($row = 2; $row <= $highestRow; $row++){
-            $desc_especialidad=trim($sheet->getCell("F".$row)->getValue());
+            $desc_especialidad=trim($sheet->getCell("G".$row)->getValue());
             $ruta_especialidad=$crear_directorio.'/'.$desc_especialidad;
             if(!is_dir($ruta_especialidad)){
                 mkdir($ruta_especialidad,0777,true); 
@@ -49,7 +49,7 @@ if(isset($_POST["button"])){
                 
             }
             
-            $anio_ingreso=trim($sheet->getCell("E".$row)->getValue());
+            $anio_ingreso=trim($sheet->getCell("F".$row)->getValue());
             $ruta_ingreso=$ruta_especialidad.'/'.$anio_ingreso;
             if(!is_dir($ruta_ingreso)){
                 mkdir($ruta_ingreso,0777,true); 
@@ -60,10 +60,11 @@ if(isset($_POST["button"])){
             $nom_alumno=trim($sheet->getCell("D".$row)->getValue());
             $ape_materno=trim($sheet->getCell("C".$row)->getValue());
             $ape_paterno=trim($sheet->getCell("B".$row)->getValue());
+            $cod_permiso=trim($sheet->getCell("E".$row)->getValue());
             $cod_alumno=trim($sheet->getCell("A".$row)->getValue());
-            $ruta_alumno=$ruta_ingreso.'/'.$cod_alumno.'-'.$ape_paterno.'.'.$ape_materno.'.'.$nom_alumno;
+            $ruta_alumno=$ruta_ingreso.'/'.$cod_alumno.'-'.$ape_paterno.'.'.$ape_materno.'.'.$nom_alumno.'('.$cod_permiso.')';
             mkdir($ruta_alumno,0777,true); 
-            echo 'Se creo la carpeta del alumno:'.$cod_alumno.'-'.$ape_paterno.'.'.$ape_materno.'.'.$nom_alumno.'<br><br>';
+            echo 'Se creo la carpeta del alumno:'.$cod_alumno.'-'.$ape_paterno.'.'.$ape_materno.'.'.$nom_alumno.'('.$cod_permiso.')<br><br>';
         }
    
 }
